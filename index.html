@@ -1,0 +1,567 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Junior City — Insights consommateurs & shoppers sur la cible enfants</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400&display=swap" rel="stylesheet">
+<style>
+/* ============================================================
+   PALETTE — modifiable en un seul endroit
+   (couleurs inspirées de l'identité Junior City : smiley jaune
+   + palette vive "enfance". À ajuster avec les hex exacts
+   de la future charte si besoin.)
+   ============================================================ */
+:root{
+  --ink:    #21315B;   /* bleu nuit — textes */
+  --ink-60: rgba(33,49,91,.62);
+  --paper:  #FFFFFF;
+  --cloud:  #F2F7FC;   /* sections alternées */
+  --sun:    #FFC933;   /* jaune smiley */
+  --sun-deep:#F5A623;
+  --sky:    #1E78D2;   /* bleu Junior City */
+  --coral:  #F4573B;
+  --leaf:   #59B94C;
+  --grape:  #8A63D2;
+
+  --radius: 22px;
+  --shadow: 0 14px 40px rgba(33,49,91,.10);
+  --font-display: "Baloo 2", system-ui, sans-serif;
+  --font-body: "Nunito Sans", system-ui, sans-serif;
+}
+
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  font-family:var(--font-body);
+  color:var(--ink);
+  background:var(--paper);
+  line-height:1.6;
+  overflow-x:hidden;
+}
+img{max-width:100%}
+a{color:inherit}
+::selection{background:var(--sun);color:var(--ink)}
+
+h1,h2,h3,.display{font-family:var(--font-display);line-height:1.08;font-weight:800}
+
+.wrap{width:min(1140px,92%);margin-inline:auto}
+
+/* ---------- Eyebrow / labels ---------- */
+.eyebrow{
+  display:inline-flex;align-items:center;gap:.5em;
+  font-size:.78rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--sky);
+}
+.eyebrow::before{content:"";width:26px;height:4px;border-radius:2px;background:var(--sun)}
+
+/* ---------- Boutons ---------- */
+.btn{
+  display:inline-flex;align-items:center;gap:.55em;
+  font-family:var(--font-display);font-weight:700;font-size:1rem;
+  padding:.85em 1.6em;border-radius:999px;text-decoration:none;
+  transition:transform .18s ease, box-shadow .18s ease, background .18s ease;
+  cursor:pointer;border:none;
+}
+.btn:active{transform:scale(.97)}
+.btn-primary{background:var(--sky);color:#fff;box-shadow:0 8px 22px rgba(30,120,210,.35)}
+.btn-primary:hover{transform:translateY(-3px);box-shadow:0 14px 28px rgba(30,120,210,.4)}
+.btn-sun{background:var(--sun);color:var(--ink);box-shadow:0 8px 22px rgba(255,201,51,.45)}
+.btn-sun:hover{transform:translateY(-3px)}
+.btn-ghost{background:transparent;color:var(--ink);box-shadow:inset 0 0 0 2px rgba(33,49,91,.18)}
+.btn-ghost:hover{box-shadow:inset 0 0 0 2px var(--ink)}
+
+/* ============================================================
+   NAV
+   ============================================================ */
+header{
+  position:sticky;top:0;z-index:50;
+  background:rgba(255,255,255,.85);backdrop-filter:blur(12px);
+  border-bottom:1px solid rgba(33,49,91,.07);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:74px}
+.logo{display:flex;align-items:center;gap:.45em;text-decoration:none;font-family:var(--font-display);font-weight:800;font-size:1.45rem;letter-spacing:-.01em}
+.logo .j{color:var(--sky)}
+.logo .c{color:var(--coral)}
+.logo-smiley{width:30px;height:30px;flex:none}
+.nav-links{display:flex;align-items:center;gap:1.7em;list-style:none}
+.nav-links a{text-decoration:none;font-weight:700;font-size:.95rem;color:var(--ink-60);transition:color .15s}
+.nav-links a:hover{color:var(--ink)}
+.nav-cta{font-size:.9rem;padding:.65em 1.3em}
+
+.nav-links a.active{color:var(--ink);position:relative}
+.nav-links a.active::after{content:"";position:absolute;left:0;right:0;bottom:-6px;height:3px;border-radius:2px;background:var(--sun)}
+.burger{display:none;background:none;border:none;font-size:1.6rem;color:var(--ink);cursor:pointer}
+
+/* ============================================================
+   HERO
+   ============================================================ */
+.hero{position:relative;padding:70px 0 40px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.15fr .85fr;gap:40px;align-items:center}
+.hero h1{font-size:clamp(2.5rem,5.4vw,4.3rem);letter-spacing:-.015em;margin:.5em 0 .4em}
+.hero h1 .u{position:relative;white-space:nowrap}
+.hero h1 .u::after{
+  content:"";position:absolute;left:0;right:0;bottom:.08em;height:.32em;z-index:-1;
+  background:var(--sun);border-radius:6px;transform:rotate(-1deg);
+}
+.hero p.lead{font-size:1.15rem;color:var(--ink-60);max-width:32em}
+.hero-quote{margin-top:1.4em;font-size:.9rem;color:var(--ink-60)}
+.hero-quote em{font-weight:700;color:var(--ink)}
+.hero-ctas{display:flex;gap:.9em;flex-wrap:wrap;margin-top:1.8em}
+
+/* confettis flottants */
+.confetti{position:absolute;border-radius:50%;opacity:.9;animation:float 7s ease-in-out infinite}
+.confetti.sq{border-radius:6px}
+.confetti.tri{width:0!important;height:0!important;background:transparent!important;border-left:11px solid transparent;border-right:11px solid transparent;border-radius:0}
+@keyframes float{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-18px) rotate(12deg)}}
+
+/* ---------- Smiley signature ---------- */
+.smiley-stage{position:relative;display:flex;justify-content:center}
+.smiley{width:min(360px,80%);filter:drop-shadow(0 24px 40px rgba(245,166,35,.35));cursor:pointer;transition:transform .25s ease}
+.smiley:hover{transform:scale(1.03) rotate(-2deg)}
+.smiley .lid{transform-origin:center;transform:scaleY(0)}
+.smiley.wink .lid-r{animation:wink .5s ease}
+.smiley.blink .lid{animation:wink .35s ease}
+@keyframes wink{0%,100%{transform:scaleY(0)}45%,60%{transform:scaleY(1)}}
+.smiley-hint{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-size:.78rem;font-weight:700;color:var(--ink-60);background:#fff;border-radius:999px;padding:.35em 1em;box-shadow:var(--shadow);white-space:nowrap}
+
+/* ============================================================
+   MARQUEE de thèmes
+   ============================================================ */
+.marquee{background:var(--ink);color:#fff;padding:14px 0;overflow:hidden}
+.marquee-track{display:flex;gap:2.5em;width:max-content;animation:scroll 30s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes scroll{to{transform:translateX(-50%)}}
+.marquee span{font-family:var(--font-display);font-weight:700;font-size:1rem;white-space:nowrap;display:flex;align-items:center;gap:2.5em}
+.marquee .dot{width:8px;height:8px;border-radius:50%;display:inline-block}
+
+/* ============================================================
+   SECTIONS génériques
+   ============================================================ */
+section{padding:90px 0}
+.section-head{max-width:44em;margin-bottom:48px}
+.section-head h2{font-size:clamp(1.9rem,3.4vw,2.7rem);margin:.35em 0 .4em;letter-spacing:-.01em}
+.section-head p{color:var(--ink-60);font-size:1.08rem}
+.alt{background:var(--cloud)}
+
+/* ---------- Mission : 3 verbes ---------- */
+.mission{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.mission-card{
+  background:#fff;border-radius:var(--radius);padding:34px 28px;box-shadow:var(--shadow);
+  border-top:6px solid var(--sun);transition:transform .2s ease;
+}
+.mission-card:nth-child(2){border-color:var(--sky)}
+.mission-card:nth-child(3){border-color:var(--coral)}
+.mission-card:hover{transform:translateY(-6px)}
+.mission-card .num{font-family:var(--font-display);font-weight:800;font-size:.85rem;color:var(--ink-60);letter-spacing:.1em}
+.mission-card h3{font-size:1.5rem;margin:.3em 0 .4em}
+.mission-card p{color:var(--ink-60);font-size:.98rem}
+
+/* ---------- Les 6 questions ---------- */
+.questions{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.q-tile{
+  border-radius:var(--radius);padding:26px 24px;color:#fff;min-height:150px;
+  display:flex;flex-direction:column;justify-content:flex-end;gap:.2em;
+  transform:rotate(0);transition:transform .2s ease;position:relative;overflow:hidden;
+}
+.q-tile:hover{transform:rotate(-1.5deg) scale(1.02)}
+.q-tile h3{font-size:1.7rem}
+.q-tile p{font-size:.92rem;opacity:.92;line-height:1.45}
+.q-tile::before{content:"?";position:absolute;top:-18px;right:6px;font-family:var(--font-display);font-weight:800;font-size:6rem;opacity:.14}
+.q-sky{background:var(--sky)} .q-coral{background:var(--coral)} .q-leaf{background:var(--leaf)}
+.q-grape{background:var(--grape)} .q-sun{background:var(--sun-deep)} .q-ink{background:var(--ink)}
+
+/* ---------- Offre ---------- */
+.offre{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.offre-card{
+  background:#fff;border-radius:var(--radius);padding:36px 30px;box-shadow:var(--shadow);
+  display:flex;flex-direction:column;gap:.7em;transition:transform .2s ease, box-shadow .2s ease;
+}
+.offre-card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(33,49,91,.14)}
+.offre-icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:1.7rem}
+.offre-card h3{font-size:1.35rem}
+.offre-card p{color:var(--ink-60);font-size:.97rem;flex:1}
+.offre-card a{font-weight:800;text-decoration:none;color:var(--sky);font-size:.95rem}
+.offre-card a:hover{text-decoration:underline}
+
+/* ---------- Actus ---------- */
+.actus{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.actu-card{
+  background:#fff;border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow);
+  text-decoration:none;display:flex;flex-direction:column;transition:transform .2s ease;
+}
+.actu-card:hover{transform:translateY(-6px)}
+.actu-cover{height:150px;display:grid;place-items:center;font-size:3rem}
+.actu-body{padding:22px 24px 26px;display:flex;flex-direction:column;gap:.5em;flex:1}
+.chip{
+  align-self:flex-start;font-size:.68rem;font-weight:800;letter-spacing:.12em;text-transform:uppercase;
+  padding:.4em .9em;border-radius:999px;color:#fff;
+}
+.actu-card h3{font-size:1.15rem;line-height:1.3;flex:1}
+.actu-date{font-size:.82rem;color:var(--ink-60);font-weight:700}
+
+/* ---------- Bande panel parents ---------- */
+.panel{
+  background:linear-gradient(120deg,var(--sun) 0%,var(--sun-deep) 100%);
+  border-radius:calc(var(--radius) + 8px);padding:56px 48px;position:relative;overflow:hidden;
+  display:grid;grid-template-columns:1.2fr auto;gap:30px;align-items:center;
+}
+.panel h2{font-size:clamp(1.7rem,3vw,2.4rem);letter-spacing:-.01em}
+.panel p{max-width:32em;font-weight:600;color:rgba(33,49,91,.75);margin-top:.4em}
+.panel .btn{background:var(--ink);color:#fff}
+.panel .btn:hover{transform:translateY(-3px)}
+.panel::after{
+  content:"";position:absolute;right:-70px;top:-70px;width:230px;height:230px;border-radius:50%;
+  background:rgba(255,255,255,.28);
+}
+
+/* ---------- Footer ---------- */
+footer{background:var(--ink);color:#fff;padding:70px 0 30px;margin-top:90px}
+.foot-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:40px;padding-bottom:44px;border-bottom:1px solid rgba(255,255,255,.14)}
+.foot-grid h4{font-family:var(--font-display);font-size:1.05rem;margin-bottom:.8em;color:var(--sun)}
+.foot-grid a{color:rgba(255,255,255,.75);text-decoration:none;display:block;margin-bottom:.5em;font-size:.95rem}
+.foot-grid a:hover{color:#fff}
+.foot-grid p{color:rgba(255,255,255,.75);font-size:.95rem}
+.foot-logo{font-family:var(--font-display);font-weight:800;font-size:1.5rem;display:flex;align-items:center;gap:.4em;margin-bottom:.6em}
+.foot-base{display:flex;justify-content:space-between;align-items:center;padding-top:26px;font-size:.85rem;color:rgba(255,255,255,.55);flex-wrap:wrap;gap:1em}
+
+/* ---------- Reveal on scroll ---------- */
+.reveal{opacity:0;transform:translateY(26px);transition:opacity .6s ease, transform .6s ease}
+.reveal.in{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .reveal{opacity:1;transform:none}
+  html{scroll-behavior:auto}
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width:960px){
+  .hero-grid{grid-template-columns:1fr;text-align:center}
+  .hero p.lead{margin-inline:auto}
+  .hero-ctas{justify-content:center}
+  .smiley{width:min(260px,70%)}
+  .mission,.offre,.actus,.questions{grid-template-columns:1fr 1fr}
+  .foot-grid{grid-template-columns:1fr 1fr}
+  .panel{grid-template-columns:1fr;text-align:center;justify-items:center}
+}
+@media (max-width:640px){
+  .nav-links{display:none;position:absolute;top:74px;left:0;right:0;background:#fff;flex-direction:column;padding:1.2em;gap:1.1em;border-bottom:1px solid rgba(33,49,91,.08)}
+  .nav-links.open{display:flex}
+  .burger{display:block}
+  .mission,.offre,.actus,.questions,.foot-grid{grid-template-columns:1fr}
+  section{padding:64px 0}
+}
+</style>
+</head>
+<body>
+
+<!-- ============================ NAV ============================ -->
+<header>
+  <div class="wrap nav">
+    <a class="logo" href="#" aria-label="Junior City — accueil">
+      <svg class="logo-smiley" viewBox="0 0 60 60" aria-hidden="true">
+        <circle cx="30" cy="30" r="28" fill="#FFC933"/>
+        <circle cx="21" cy="24" r="4" fill="#21315B"/>
+        <circle cx="39" cy="24" r="4" fill="#21315B"/>
+        <path d="M18 36 Q30 48 42 36" stroke="#21315B" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span><span class="j">junior</span>&nbsp;<span class="c">city</span></span>
+    </a>
+    <nav>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="offre.html" data-page="offre">Offre</a></li>
+        <li><a href="clients.html" data-page="clients">Clients</a></li>
+        <li><a href="equipe.html" data-page="equipe">Équipe</a></li>
+        <li><a href="actualite.html" data-page="actualite">Actualité</a></li>
+        <li><a href="contact.html" data-page="contact">Contact</a></li>
+        <li><a class="btn btn-sun nav-cta" href="paneliste.html">Devenir panéliste</a></li>
+      </ul>
+    </nav>
+    <button class="burger" id="burger" aria-label="Ouvrir le menu">☰</button>
+  </div>
+</header>
+
+<!-- ============================ HERO ============================ -->
+<section class="hero">
+  <!-- confettis décoratifs -->
+  <div class="confetti" style="width:14px;height:14px;background:var(--coral);top:16%;left:6%;animation-delay:.4s"></div>
+  <div class="confetti sq" style="width:16px;height:16px;background:var(--leaf);top:64%;left:3%;animation-delay:1.4s"></div>
+  <div class="confetti" style="width:10px;height:10px;background:var(--sky);top:12%;right:14%;animation-delay:.9s"></div>
+  <div class="confetti tri" style="border-bottom:18px solid var(--sun);top:75%;right:8%;animation-delay:2s"></div>
+  <div class="confetti sq" style="width:12px;height:12px;background:var(--grape);top:38%;right:4%;animation-delay:.2s"></div>
+
+  <div class="wrap hero-grid">
+    <div>
+      <span class="eyebrow">Institut d'études · Enfants &amp; Familles</span>
+      <h1>Les enfants ne sont <span class="u">pas comme nous</span>.<br>Tant mieux&nbsp;: on les comprend.</h1>
+      <p class="lead">Junior City fournit aux marques, distributeurs et institutionnels des insights consommateurs &amp; shoppers sur la cible enfants — et des recommandations qui se transforment en actions.</p>
+      <div class="hero-ctas">
+        <a class="btn btn-primary" href="offre.html">Découvrir notre offre</a>
+        <a class="btn btn-ghost" href="contact.html">Parler à un expert</a>
+      </div>
+      <p class="hero-quote">«&nbsp;Il faut bien se rendre à l'évidence&nbsp;: les enfants ne sont pas comme nous&nbsp;!&nbsp;» — <em>Pierre Desproges</em></p>
+    </div>
+
+    <div class="smiley-stage">
+      <!-- Élément signature : smiley interactif (les yeux suivent la souris, clin d'œil au clic) -->
+      <svg class="smiley" id="smiley" viewBox="0 0 200 200" role="img" aria-label="Smiley Junior City">
+        <circle cx="100" cy="100" r="92" fill="#FFC933"/>
+        <circle cx="100" cy="100" r="92" fill="none" stroke="#F5A623" stroke-width="6" opacity=".5"/>
+        <!-- yeux -->
+        <g id="eyeL"><circle cx="68" cy="80" r="15" fill="#fff"/><circle class="pupil" cx="68" cy="80" r="7" fill="#21315B"/></g>
+        <g id="eyeR"><circle cx="132" cy="80" r="15" fill="#fff"/><circle class="pupil" cx="132" cy="80" r="7" fill="#21315B"/></g>
+        <!-- paupières (clin d'œil) -->
+        <rect class="lid lid-l" x="50" y="62" width="36" height="36" rx="18" fill="#FFC933"/>
+        <rect class="lid lid-r" x="114" y="62" width="36" height="36" rx="18" fill="#FFC933"/>
+        <!-- joues -->
+        <circle cx="52" cy="112" r="9" fill="#F4573B" opacity=".35"/>
+        <circle cx="148" cy="112" r="9" fill="#F4573B" opacity=".35"/>
+        <!-- sourire -->
+        <path d="M60 122 Q100 162 140 122" stroke="#21315B" stroke-width="9" fill="none" stroke-linecap="round"/>
+      </svg>
+      <span class="smiley-hint">👋 Cliquez-moi&nbsp;!</span>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ MARQUEE ============================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee-track" id="marqueeTrack">
+    <span>
+      Jeux &amp; jouets <i class="dot" style="background:var(--sun)"></i>
+      Alimentation <i class="dot" style="background:var(--coral)"></i>
+      TikTok &amp; réseaux sociaux <i class="dot" style="background:var(--leaf)"></i>
+      Licences &amp; héros <i class="dot" style="background:var(--sky)"></i>
+      Noël <i class="dot" style="background:var(--grape)"></i>
+      Jeux vidéo <i class="dot" style="background:var(--sun)"></i>
+      Parentalité <i class="dot" style="background:var(--coral)"></i>
+      Éducation <i class="dot" style="background:var(--leaf)"></i>
+      Mode enfant <i class="dot" style="background:var(--sky)"></i>
+      Enfants &amp; écrans <i class="dot" style="background:var(--grape)"></i>
+    </span>
+  </div>
+</div>
+
+<!-- ============================ MISSION ============================ -->
+<section id="mission">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Notre mission</span>
+      <h2>Écouter. Comprendre. Orienter.</h2>
+      <p>Ils ne pensent pas et n'agissent pas comme nous. Chez Junior City, nous cherchons à comprendre les enfants pour vous aider à penser comme eux.</p>
+    </div>
+    <div class="mission">
+      <div class="mission-card reveal">
+        <span class="num">01</span>
+        <h3>Écouter</h3>
+        <p>Donner la parole aux enfants et aux familles, sur le terrain comme en ligne, avec des protocoles adaptés à chaque âge.</p>
+      </div>
+      <div class="mission-card reveal" style="transition-delay:.1s">
+        <span class="num">02</span>
+        <h3>Comprendre</h3>
+        <p>Décrypter comportements, attentes et habitudes de consommation au sein des familles avec enfants.</p>
+      </div>
+      <div class="mission-card reveal" style="transition-delay:.2s">
+        <span class="num">03</span>
+        <h3>Orienter</h3>
+        <p>Livrer des recommandations opérationnelles — des <em>Top Important Priorities</em> — qui se traduisent en activations concrètes.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ LES 6 QUESTIONS ============================ -->
+<section class="alt">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Insight consommateurs &amp; shoppers</span>
+      <h2>Six questions, toutes les réponses.</h2>
+      <p>Comprendre la cible jeunesse, c'est répondre précisément à chacune de ces questions — de la maison au point de vente.</p>
+    </div>
+    <div class="questions">
+      <div class="q-tile q-sky reveal"><h3>Qui&nbsp;?</h3><p>Qui sont-ils, à chaque âge et dans chaque contexte familial&nbsp;?</p></div>
+      <div class="q-tile q-coral reveal" style="transition-delay:.05s"><h3>Quoi&nbsp;?</h3><p>Qu'aiment-ils, que consomment-ils, qu'espèrent-ils&nbsp;?</p></div>
+      <div class="q-tile q-leaf reveal" style="transition-delay:.1s"><h3>Comment&nbsp;?</h3><p>Comment se comportent-ils et réagissent-ils&nbsp;?</p></div>
+      <div class="q-tile q-grape reveal" style="transition-delay:.15s"><h3>Où&nbsp;?</h3><p>Où achètent-ils, en magasin comme en ligne&nbsp;?</p></div>
+      <div class="q-tile q-sun reveal" style="transition-delay:.2s"><h3>Quand&nbsp;?</h3><p>À quels moments clés — rentrée, Noël, anniversaires&nbsp;?</p></div>
+      <div class="q-tile q-ink reveal" style="transition-delay:.25s"><h3>Pourquoi&nbsp;?</h3><p>Quels ressorts profonds guident leurs choix&nbsp;?</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ OFFRE ============================ -->
+<section id="offre">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Notre offre</span>
+      <h2>From kidsights… to activations&nbsp;!</h2>
+      <p>Des méthodologies quantitatives et qualitatives pensées pour les enfants, les ados et leurs parents.</p>
+    </div>
+    <div class="offre">
+      <div class="offre-card reveal">
+        <div class="offre-icon" style="background:rgba(30,120,210,.12)">📊</div>
+        <h3>Études quantitatives</h3>
+        <p>Mesurer les usages, attitudes et comportements d'achat grâce à des enquêtes robustes auprès des enfants et des familles.</p>
+        <a href="offre.html">En savoir plus →</a>
+      </div>
+      <div class="offre-card reveal" style="transition-delay:.1s">
+        <div class="offre-icon" style="background:rgba(244,87,59,.12)">💬</div>
+        <h3>Études qualitatives</h3>
+        <p>Entretiens, focus groups et communautés en ligne pour explorer en profondeur l'imaginaire et le quotidien des jeunes.</p>
+        <a href="offre.html">En savoir plus →</a>
+      </div>
+      <div class="offre-card reveal" style="transition-delay:.2s">
+        <div class="offre-icon" style="background:rgba(89,185,76,.12)">👨‍👩‍👧‍👦</div>
+        <h3>Panel familles</h3>
+        <p>Un panel de parents et d'enfants engagés, interrogeable rapidement pour tester produits, concepts et communications.</p>
+        <a href="paneliste.html">En savoir plus →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ ACTUS ============================ -->
+<section class="alt" id="actus">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <span class="eyebrow">Actualité</span>
+      <h2>On parle de…</h2>
+      <p>Décryptages, chiffres du mois et tendances observées auprès des enfants et de leurs familles.</p>
+    </div>
+    <div class="actus">
+      <a class="actu-card reveal" href="actualite.html">
+        <div class="actu-cover" style="background:rgba(138,99,210,.15)">🧠</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--coral)">À la une</span>
+          <h3>Le phénomène Brainrot à l'assaut des enfants</h3>
+          <span class="actu-date">29 juin 2026</span>
+        </div>
+      </a>
+      <a class="actu-card reveal" style="transition-delay:.1s" href="actualite.html">
+        <div class="actu-cover" style="background:rgba(30,120,210,.12)">🤖</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--sky)">Décryptage</span>
+          <h3>Les jeunes ados et l'IA&nbsp;: l'évolution des usages</h3>
+          <span class="actu-date">29 juin 2026</span>
+        </div>
+      </a>
+      <a class="actu-card reveal" style="transition-delay:.2s" href="actualite.html">
+        <div class="actu-cover" style="background:rgba(255,201,51,.2)">🎁</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--leaf)">Décryptage</span>
+          <h3>Mystery Boxes&nbsp;: la success story «&nbsp;surprise&nbsp;»&nbsp;!</h3>
+          <span class="actu-date">29 avril 2026</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ PANEL PARENTS ============================ -->
+<section id="panel">
+  <div class="wrap">
+    <div class="panel reveal">
+      <div>
+        <h2>Parents, votre avis compte&nbsp;!</h2>
+        <p>Rejoignez le panel Junior City et participez, avec vos enfants, à des études rémunérées sur les sujets qui font leur quotidien.</p>
+      </div>
+      <a class="btn" href="paneliste.html">Inscrivez-vous 🎈</a>
+    </div>
+  </div>
+</section>
+
+<!-- ============================ FOOTER ============================ -->
+<footer id="contact">
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <div class="foot-logo">
+          <svg width="26" height="26" viewBox="0 0 60 60" aria-hidden="true">
+            <circle cx="30" cy="30" r="28" fill="#FFC933"/>
+            <circle cx="21" cy="24" r="4" fill="#21315B"/>
+            <circle cx="39" cy="24" r="4" fill="#21315B"/>
+            <path d="M18 36 Q30 48 42 36" stroke="#21315B" stroke-width="4.5" fill="none" stroke-linecap="round"/>
+          </svg>
+          junior city
+        </div>
+        <p>Fournisseur d'insights consommateurs &amp; shoppers sur la cible enfants.</p>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <p>1 rue des Vergers — Bât. 4C<br>69760 Limonest, France</p>
+        <a href="https://www.linkedin.com/company/junior-city">LinkedIn ↗</a>
+      </div>
+      <div>
+        <h4>Navigation</h4>
+        <a href="offre.html">Offre</a>
+        <a href="clients.html">Clients</a>
+        <a href="equipe.html">Équipe</a>
+        <a href="actualite.html">Actualité</a>
+        <a href="paneliste.html">Devenir panéliste</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </div>
+    <div class="foot-base">
+      <span>© 2026 Junior City — Maquette de démonstration</span>
+      <span>From kidsights… to activations&nbsp;!</span>
+    </div>
+  </div>
+</footer>
+
+<script>
+/* ---------- Menu mobile ---------- */
+document.getElementById('burger').addEventListener('click', () => {
+  document.getElementById('navLinks').classList.toggle('open');
+});
+
+/* ---------- Lien actif dans la nav ---------- */
+(() => {
+  const file = (location.pathname.split('/').pop() || 'index.html').replace('.html','');
+  document.querySelectorAll('.nav-links a[data-page]').forEach(a => {
+    if (a.dataset.page === file) a.classList.add('active');
+  });
+})();
+
+/* ---------- Marquee : dupliquer le contenu pour la boucle ---------- */
+const track = document.getElementById('marqueeTrack');
+track.innerHTML += track.innerHTML;
+
+/* ---------- Reveal au scroll ---------- */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+}, { threshold: .15 });
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+/* ---------- Smiley : yeux qui suivent le curseur ---------- */
+const smiley = document.getElementById('smiley');
+const pupils = smiley.querySelectorAll('.pupil');
+const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+if (!reduceMotion) {
+  document.addEventListener('mousemove', e => {
+    const r = smiley.getBoundingClientRect();
+    const cx = r.left + r.width / 2, cy = r.top + r.height / 2;
+    const dx = e.clientX - cx, dy = e.clientY - cy;
+    const dist = Math.min(6, Math.hypot(dx, dy) / 40);
+    const a = Math.atan2(dy, dx);
+    pupils.forEach(p => p.setAttribute('transform', `translate(${Math.cos(a)*dist} ${Math.sin(a)*dist})`));
+  });
+
+  /* clignement automatique de temps en temps */
+  setInterval(() => {
+    smiley.classList.add('blink');
+    setTimeout(() => smiley.classList.remove('blink'), 400);
+  }, 4500);
+}
+
+/* clin d'œil au clic */
+smiley.addEventListener('click', () => {
+  smiley.classList.remove('wink'); void smiley.offsetWidth;
+  smiley.classList.add('wink');
+});
+</script>
+</body>
+</html>
