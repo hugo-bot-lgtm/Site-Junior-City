@@ -172,7 +172,7 @@ section{padding:90px 0}
 .q-grape{background:var(--grape)} .q-sun{background:var(--sun-deep)} .q-ink{background:var(--ink)}
 
 /* ---------- Offre ---------- */
-.offre{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.offre{display:grid;grid-template-columns:repeat(4,1fr);gap:22px}
 .offre-card{
   background:#fff;border-radius:var(--radius);padding:36px 30px;box-shadow:var(--shadow);
   display:flex;flex-direction:column;gap:.7em;transition:transform .2s ease, box-shadow .2s ease;
@@ -180,9 +180,10 @@ section{padding:90px 0}
 .offre-card:hover{transform:translateY(-6px);box-shadow:0 22px 50px rgba(33,49,91,.14)}
 .offre-icon{width:58px;height:58px;border-radius:18px;display:grid;place-items:center;font-size:1.7rem}
 .offre-card h3{font-size:1.35rem}
-.offre-card p{color:var(--ink-60);font-size:.97rem;flex:1}
+.offre-card p{color:var(--ink-60);font-size:.92rem}
 .offre-card a{font-weight:800;text-decoration:none;color:var(--sky);font-size:.95rem}
 .offre-card a:hover{text-decoration:underline}
+.metho-kind{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);margin-bottom:.15em}
 
 /* ---------- Actus ---------- */
 .actus{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -357,27 +358,32 @@ footer{background:var(--ink);color:#fff;padding:70px 0 30px;margin-top:90px}
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Notre offre</span>
-      <h2>From kidsights… to activations&nbsp;!</h2>
+      <h2>4 grands types de méthodologies modulables</h2>
       <p>Des méthodologies quantitatives et qualitatives pensées pour les enfants, les ados et leurs parents.</p>
     </div>
     <div class="offre">
       <div class="offre-card reveal">
-        <div class="offre-icon" style="background:rgba(30,120,210,.12)">📊</div>
-        <h3>Études quantitatives</h3>
-        <p>Mesurer les usages, attitudes et comportements d'achat grâce à des enquêtes robustes auprès des enfants et des familles.</p>
-        <a href="offre.html">En savoir plus →</a>
+        <div class="offre-icon" style="background:rgba(30,120,210,.12)">🏠</div>
+        <h3><span class="metho-kind">Face-à-face</span>Domicile</h3>
+        <p>Démarche clé pour connaître l'évolution des habitudes de vie &amp; des attitudes des enfants comme de leurs parents, en passant une heure à domicile dans leur cadre de vie de tous les jours. Pour presque tout savoir sur ce qu'ils consomment à domicile et surtout comment.</p>
+        <p>Études menées sur l'ensemble du territoire, permettant d'avoir un observatoire de suivi de tendances.</p>
       </div>
       <div class="offre-card reveal" style="transition-delay:.1s">
-        <div class="offre-icon" style="background:rgba(244,87,59,.12)">💬</div>
-        <h3>Études qualitatives</h3>
-        <p>Entretiens, focus groups et communautés en ligne pour explorer en profondeur l'imaginaire et le quotidien des jeunes.</p>
-        <a href="offre.html">En savoir plus →</a>
+        <div class="offre-icon" style="background:rgba(244,87,59,.12)">🗣️</div>
+        <h3><span class="metho-kind">Face-à-face</span>Focus groups</h3>
+        <p>Pour obtenir des avis objectifs et contrôler la perception d'un concept, d'un produit, d'un service ou d'une communication par les enfants ou leurs parents, les tables rondes permettent grâce à la dynamique de groupe d'amplifier le sujet sous tous ses angles, sans restriction. Une récolte d'insights projectifs et de verbatim d'usage ou d'opinion des plus utiles pour optimiser une mise sur le marché ou l'exécution d'un plan marketing.</p>
+        <p>Études menées en priorité avec notre propre panel de foyers avec enfants sur la région lyonnaise, mais aussi à travers tout le territoire en fonction de chaque problématique.</p>
       </div>
       <div class="offre-card reveal" style="transition-delay:.2s">
-        <div class="offre-icon" style="background:rgba(89,185,76,.12)">👨‍👩‍👧‍👦</div>
-        <h3>Panel familles</h3>
-        <p>Un panel de parents et d'enfants engagés, interrogeable rapidement pour tester produits, concepts et communications.</p>
-        <a href="paneliste.html">En savoir plus →</a>
+        <div class="offre-icon" style="background:rgba(89,185,76,.12)">📱</div>
+        <h3><span class="metho-kind">Questionnaire online</span>Quantitatif</h3>
+        <p>Pour tous types de mesures, avec des questions ouvertes ou fermées, en fonction des briefs &amp; des objectifs assignés aux diverses études, des binômes enfants-parents interrogés online selon les segmentations d'âges appropriées.</p>
+        <p>Possibilité d'utiliser nos propres bases de données, ou les vôtres ou bien encore d'avoir accès à des groupes de panélistes tiers, avec des partenaires nationaux &amp; internationaux appropriés.</p>
+      </div>
+      <div class="offre-card reveal" style="transition-delay:.3s">
+        <div class="offre-icon" style="background:rgba(255,201,51,.18)">💻</div>
+        <h3><span class="metho-kind">Communauté-forum online</span>Quanti-quali</h3>
+        <p>Une méthode avérée permettant de questionner en profondeur et dans la durée (entre 10 &amp; 100 jours) des groupes (entre 30 &amp; 70 répondants) de duos parents-enfants sur leurs habitudes d'usage et de consommation en situation. Pour se faire décrire en détail et en toute liberté par les consommateurs, des comportements &amp; des expériences en temps réel et dans la durée, afin de mieux explorer leurs attentes et obtenir de l'insight sur des évolutions de tendances.</p>
       </div>
     </div>
   </div>
