@@ -120,11 +120,8 @@ header{
 
 /* ---------- Smiley signature ---------- */
 .smiley-stage{position:relative;display:flex;justify-content:center}
-.smiley{width:min(360px,80%);filter:drop-shadow(0 24px 40px rgba(245,166,35,.35));cursor:pointer;transition:transform .25s ease}
+.smiley{width:min(360px,80%);aspect-ratio:1;object-fit:cover;object-position:50% 25%;border-radius:50%;filter:drop-shadow(0 24px 40px rgba(245,166,35,.35));transition:transform .25s ease}
 .smiley:hover{transform:scale(1.03) rotate(-2deg)}
-.smiley .lid{transform-origin:center;transform:scaleY(0)}
-.smiley.wink .lid-r{animation:wink .5s ease}
-.smiley.blink .lid{animation:wink .35s ease}
 @keyframes wink{0%,100%{transform:scaleY(0)}45%,60%{transform:scaleY(1)}}
 .smiley-hint{position:absolute;bottom:-8px;left:50%;transform:translateX(-50%);font-size:.78rem;font-weight:700;color:var(--ink-60);background:#fff;border-radius:999px;padding:.35em 1em;box-shadow:var(--shadow);white-space:nowrap}
 
@@ -301,23 +298,7 @@ footer{background:var(--ink);color:#fff;padding:70px 0 30px;margin-top:90px}
     </div>
 
     <div class="smiley-stage">
-      <!-- Élément signature : smiley interactif (les yeux suivent la souris, clin d'œil au clic) -->
-      <svg class="smiley" id="smiley" viewBox="0 0 200 200" role="img" aria-label="Smiley Junior City">
-        <circle cx="100" cy="100" r="92" fill="#FFC933"/>
-        <circle cx="100" cy="100" r="92" fill="none" stroke="#F5A623" stroke-width="6" opacity=".5"/>
-        <!-- yeux -->
-        <g id="eyeL"><circle cx="68" cy="80" r="15" fill="#fff"/><circle class="pupil" cx="68" cy="80" r="7" fill="#21315B"/></g>
-        <g id="eyeR"><circle cx="132" cy="80" r="15" fill="#fff"/><circle class="pupil" cx="132" cy="80" r="7" fill="#21315B"/></g>
-        <!-- paupières (clin d'œil) -->
-        <rect class="lid lid-l" x="50" y="62" width="36" height="36" rx="18" fill="#FFC933"/>
-        <rect class="lid lid-r" x="114" y="62" width="36" height="36" rx="18" fill="#FFC933"/>
-        <!-- joues -->
-        <circle cx="52" cy="112" r="9" fill="#F4573B" opacity=".35"/>
-        <circle cx="148" cy="112" r="9" fill="#F4573B" opacity=".35"/>
-        <!-- sourire -->
-        <path d="M60 122 Q100 162 140 122" stroke="#21315B" stroke-width="9" fill="none" stroke-linecap="round"/>
-      </svg>
-      <span class="smiley-hint">👋 Cliquez-moi&nbsp;!</span>
+      <img class="smiley" id="smiley" src="photo-hero.jpg" alt="Panéliste Junior City">
     </div>
   </div>
 </section>
