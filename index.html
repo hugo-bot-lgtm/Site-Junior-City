@@ -184,6 +184,14 @@ section{padding:90px 0}
 .offre-card a{font-weight:800;text-decoration:none;color:var(--sky);font-size:.95rem}
 .offre-card a:hover{text-decoration:underline}
 .metho-kind{display:block;font-size:.78rem;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);margin-bottom:.15em}
+#offre{position:relative}
+.offre-card{position:relative;overflow:hidden}
+.offre-deco{position:absolute;right:-12px;bottom:-18px;font-size:5.6rem;line-height:1;opacity:.13;pointer-events:none;user-select:none;animation:float 9s ease-in-out infinite}
+.offre-icon{animation:bob 4.2s ease-in-out infinite}
+.offre-card:nth-child(2) .offre-icon,.offre-card:nth-child(2) .offre-deco{animation-delay:.7s}
+.offre-card:nth-child(3) .offre-icon,.offre-card:nth-child(3) .offre-deco{animation-delay:1.4s}
+.offre-card:nth-child(4) .offre-icon,.offre-card:nth-child(4) .offre-deco{animation-delay:2.1s}
+@keyframes bob{0%,100%{transform:translateY(0) rotate(0)}50%{transform:translateY(-8px) rotate(-3deg)}}
 
 /* ---------- Actus ---------- */
 .actus{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
@@ -355,6 +363,13 @@ footer{background:var(--ink);color:#fff;padding:70px 0 30px;margin-top:90px}
 
 <!-- ============================ OFFRE ============================ -->
 <section id="offre">
+  <!-- confettis décoratifs -->
+  <div class="confetti" style="width:12px;height:12px;background:var(--sky);top:14%;left:5%;animation-delay:.3s"></div>
+  <div class="confetti sq" style="width:14px;height:14px;background:var(--sun);top:46%;left:3%;animation-delay:1.2s"></div>
+  <div class="confetti tri" style="border-bottom:16px solid var(--coral);top:78%;left:6%;animation-delay:2.2s"></div>
+  <div class="confetti" style="width:10px;height:10px;background:var(--grape);top:22%;right:4%;animation-delay:.8s"></div>
+  <div class="confetti sq" style="width:12px;height:12px;background:var(--leaf);top:60%;right:6%;animation-delay:1.7s"></div>
+  <div class="confetti" style="width:14px;height:14px;background:var(--coral);top:88%;right:3%;animation-delay:.5s"></div>
   <div class="wrap">
     <div class="section-head reveal">
       <span class="eyebrow">Notre offre</span>
@@ -367,23 +382,27 @@ footer{background:var(--ink);color:#fff;padding:70px 0 30px;margin-top:90px}
         <h3><span class="metho-kind">Face-à-face</span>Domicile</h3>
         <p>Démarche clé pour connaître l'évolution des habitudes de vie &amp; des attitudes des enfants comme de leurs parents, en passant une heure à domicile dans leur cadre de vie de tous les jours. Pour presque tout savoir sur ce qu'ils consomment à domicile et surtout comment.</p>
         <p>Études menées sur l'ensemble du territoire, permettant d'avoir un observatoire de suivi de tendances.</p>
+        <span class="offre-deco" aria-hidden="true">🏠</span>
       </div>
       <div class="offre-card reveal" style="transition-delay:.1s">
         <div class="offre-icon" style="background:rgba(244,87,59,.12)">🗣️</div>
         <h3><span class="metho-kind">Face-à-face</span>Focus groups</h3>
         <p>Pour obtenir des avis objectifs et contrôler la perception d'un concept, d'un produit, d'un service ou d'une communication par les enfants ou leurs parents, les tables rondes permettent grâce à la dynamique de groupe d'amplifier le sujet sous tous ses angles, sans restriction. Une récolte d'insights projectifs et de verbatim d'usage ou d'opinion des plus utiles pour optimiser une mise sur le marché ou l'exécution d'un plan marketing.</p>
         <p>Études menées en priorité avec notre propre panel de foyers avec enfants sur la région lyonnaise, mais aussi à travers tout le territoire en fonction de chaque problématique.</p>
+        <span class="offre-deco" aria-hidden="true">🗣️</span>
       </div>
       <div class="offre-card reveal" style="transition-delay:.2s">
         <div class="offre-icon" style="background:rgba(89,185,76,.12)">📱</div>
         <h3><span class="metho-kind">Questionnaire online</span>Quantitatif</h3>
         <p>Pour tous types de mesures, avec des questions ouvertes ou fermées, en fonction des briefs &amp; des objectifs assignés aux diverses études, des binômes enfants-parents interrogés online selon les segmentations d'âges appropriées.</p>
         <p>Possibilité d'utiliser nos propres bases de données, ou les vôtres ou bien encore d'avoir accès à des groupes de panélistes tiers, avec des partenaires nationaux &amp; internationaux appropriés.</p>
+        <span class="offre-deco" aria-hidden="true">📱</span>
       </div>
       <div class="offre-card reveal" style="transition-delay:.3s">
         <div class="offre-icon" style="background:rgba(255,201,51,.18)">💻</div>
         <h3><span class="metho-kind">Communauté-forum online</span>Quanti-quali</h3>
         <p>Une méthode avérée permettant de questionner en profondeur et dans la durée (entre 10 &amp; 100 jours) des groupes (entre 30 &amp; 70 répondants) de duos parents-enfants sur leurs habitudes d'usage et de consommation en situation. Pour se faire décrire en détail et en toute liberté par les consommateurs, des comportements &amp; des expériences en temps réel et dans la durée, afin de mieux explorer leurs attentes et obtenir de l'insight sur des évolutions de tendances.</p>
+        <span class="offre-deco" aria-hidden="true">💻</span>
       </div>
     </div>
   </div>
