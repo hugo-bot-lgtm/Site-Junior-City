@@ -87,6 +87,7 @@ header{
 .logo .j{color:var(--sky)}
 .logo .c{color:var(--coral)}
 .logo-mark{height:48px;width:auto;flex:none}
+.foot-logo .logo-mark{height:96px}
 .nav-links{display:flex;align-items:center;gap:1.7em;list-style:none}
 .nav-links a{text-decoration:none;font-weight:700;font-size:.95rem;color:var(--ink-60);transition:color .15s}
 .nav-links a:hover{color:var(--ink)}
@@ -464,17 +465,7 @@ footer{background:var(--ink);color:#fff;padding:70px 0 30px;margin-top:90px}
 <header>
   <div class="wrap nav">
     <a class="logo" href="index.html" aria-label="Junior City — accueil">
-      <svg class="logo-mark" viewBox="0 0 240 200" aria-hidden="true">
-        <defs>
-          <linearGradient id="jcGoldNav" x1="0" y1="0" x2=".85" y2="1">
-            <stop offset="0" stop-color="#FFD94D"/>
-            <stop offset="1" stop-color="#F5A800"/>
-          </linearGradient>
-        </defs>
-        <circle cx="112" cy="100" r="96" fill="url(#jcGoldNav)"/>
-        <path d="M52 128 Q104 186 182 120" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round"/>
-        <text x="112" y="112" text-anchor="middle" font-family="'Baloo 2', system-ui, sans-serif" font-weight="800" font-size="43" letter-spacing="-1"><tspan fill="#21315B">Junior</tspan><tspan fill="#82858B">City</tspan></text>
-      </svg>
+      <img class="logo-mark" src="logo-junior-city.png" alt="">
     </a>
     <nav>
       <ul class="nav-links" id="navLinks">
@@ -590,17 +581,7 @@ document.getElementById('panelForm').addEventListener('submit', e => {
     <div class="foot-grid">
       <div>
         <div class="foot-logo">
-          <svg class="logo-mark" viewBox="0 0 240 200" role="img" aria-label="Junior City">
-            <defs>
-              <linearGradient id="jcGoldFoot" x1="0" y1="0" x2=".85" y2="1">
-                <stop offset="0" stop-color="#FFD94D"/>
-                <stop offset="1" stop-color="#F5A800"/>
-              </linearGradient>
-            </defs>
-            <circle cx="112" cy="100" r="96" fill="url(#jcGoldFoot)"/>
-            <path d="M52 128 Q104 186 182 120" stroke="#fff" stroke-width="11" fill="none" stroke-linecap="round"/>
-            <text x="112" y="112" text-anchor="middle" font-family="'Baloo 2', system-ui, sans-serif" font-weight="800" font-size="43" letter-spacing="-1"><tspan fill="#21315B">Junior</tspan><tspan fill="#B7BAC1">City</tspan></text>
-          </svg>
+          <img class="logo-mark" src="logo-junior-city-blanc.png" alt="Junior City">
         </div>
         <p>Fournisseur d'insights consommateurs &amp; shoppers sur la cible enfants.</p>
       </div>
