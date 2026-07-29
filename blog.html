@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Contact — Junior City</title>
+<title>Blog — Junior City</title><!-- Actualité — Junior City -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@500;600;700;800&family=Nunito+Sans:ital,opsz,wght@0,6..12,400;0,6..12,600;0,6..12,700;0,6..12,800;1,6..12,400&display=swap" rel="stylesheet">
@@ -480,55 +480,97 @@ footer{background:var(--ink);color:#fff;padding:70px 0 30px;margin-top:90px}
 
 <section class="page-hero">
   <div class="wrap">
-    <span class="eyebrow">Contact</span>
-    <h1>Parlons de vos enfants…<br>enfin, de votre cible&nbsp;!</h1>
-    <p class="lead">Une problématique d'étude, une envie de collaborer : l'équipe vous répond rapidement.</p>
+    <span class="eyebrow">Blog</span>
+    <h1>Le blog Junior City</h1>
+    <p class="lead">Méthodes, tendances et coulisses de l'institut : nos experts partagent ce qu'ils apprennent au contact des enfants, des ados et de leurs familles.</p>
   </div>
 </section>
 
 <section>
-  <div class="wrap contact-grid">
-    <form class="form-card reveal" id="contactForm">
-      <div class="form-grid">
-        <div class="field"><label for="c-nom">Nom</label><input id="c-nom" type="text" placeholder="Votre nom" required></div>
-        <div class="field"><label for="c-societe">Société</label><input id="c-societe" type="text" placeholder="Votre entreprise"></div>
-        <div class="field"><label for="c-email">E-mail</label><input id="c-email" type="email" placeholder="vous@entreprise.fr" required></div>
-        <div class="field"><label for="c-sujet">Sujet</label>
-          <select id="c-sujet">
-            <option>Projet d'étude</option>
-            <option>Presse / interview</option>
-            <option>Autre</option>
-          </select>
-        </div>
-        <div class="field full"><label for="c-msg">Votre message</label><textarea id="c-msg" placeholder="Décrivez votre besoin, votre cible, vos délais…" required></textarea></div>
-      </div>
-      <div style="margin-top:1.2em">
-        <button type="submit" class="btn btn-primary">Envoyer le message ✈️</button>
-      </div>
-      <p class="form-note">Formulaire de démonstration — aucune donnée n'est envoyée.</p>
-      <div class="form-success" id="contactSuccess">Message bien reçu (démo) ! L'équipe Junior City vous répondrait sous 24&nbsp;h ouvrées.</div>
-    </form>
+  <div class="wrap">
+    <div class="filters reveal" role="tablist" aria-label="Filtrer les articles">
+      <button class="filter active" data-filter="all">Tous</button>
+      <button class="filter" data-filter="methodo">Méthodo</button>
+      <button class="filter" data-filter="tendances">Tendances</button>
+      <button class="filter" data-filter="agence">Vie de l'agence</button>
+    </div>
 
-    <aside class="contact-aside">
-      <div class="map-ph reveal">
-        <div class="map-pin"><span class="emo">📍</span>Limonest, près de Lyon</div>
+    <div class="actus grid-3plus" id="actuGrid">
+      <a class="actu-card reveal" data-cat="methodo" href="#">
+        <div class="actu-cover" style="background:rgba(30,120,210,.12)">🧪</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--sky)">Méthodo</span>
+          <h3>Interroger les 6-10 ans : nos règles d'or</h3>
+          <span class="actu-date">22 juillet 2026</span>
+        </div>
+      </a>
+      <a class="actu-card reveal" data-cat="tendances" style="transition-delay:.05s" href="#">
+        <div class="actu-cover" style="background:rgba(138,99,210,.15)">🎮</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--grape)">Tendances</span>
+          <h3>Ce que le gaming nous dit des ados en 2026</h3>
+          <span class="actu-date">10 juillet 2026</span>
+        </div>
+      </a>
+      <a class="actu-card reveal" data-cat="agence" style="transition-delay:.1s" href="#">
+        <div class="actu-cover" style="background:rgba(255,201,51,.2)">☕</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--sun);color:var(--ink)">Vie de l'agence</span>
+          <h3>Une journée avec une chargée d'études</h3>
+          <span class="actu-date">30 juin 2026</span>
+        </div>
+      </a>
+      <a class="actu-card reveal" data-cat="methodo" style="transition-delay:.15s" href="#">
+        <div class="actu-cover" style="background:rgba(244,87,59,.12)">🗣️</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--sky)">Méthodo</span>
+          <h3>Focus groups enfants : bien préparer sa table ronde</h3>
+          <span class="actu-date">18 juin 2026</span>
+        </div>
+      </a>
+      <a class="actu-card reveal" data-cat="tendances" style="transition-delay:.2s" href="#">
+        <div class="actu-cover" style="background:rgba(89,185,76,.14)">🛒</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--grape)">Tendances</span>
+          <h3>Shopper kids : qui décide vraiment au rayon céréales&nbsp;?</h3>
+          <span class="actu-date">5 juin 2026</span>
+        </div>
+      </a>
+      <a class="actu-card reveal" data-cat="agence" style="transition-delay:.25s" href="#">
+        <div class="actu-cover" style="background:rgba(33,49,91,.08)">🎂</div>
+        <div class="actu-body">
+          <span class="chip" style="background:var(--sun);color:var(--ink)">Vie de l'agence</span>
+          <h3>Junior City fête ses 25 ans</h3>
+          <span class="actu-date">20 mai 2026</span>
+        </div>
+      </a>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="panel reveal">
+      <div>
+        <h2>Ne manquez aucune tendance</h2>
+        <p>Recevez nos décryptages et le chiffre du mois directement dans votre boîte mail.</p>
       </div>
-      <div class="contact-block reveal" style="transition-delay:.1s">
-        <h3>🏠 Adresse</h3>
-        <p>Junior City<br>1 rue des Vergers — Bât. 4C<br>69760 Limonest, France</p>
-      </div>
-      <div class="contact-block reveal" style="transition-delay:.2s">
-        <h3>🔗 Suivez-nous</h3>
-        <a href="https://www.linkedin.com/company/junior-city">LinkedIn — Junior City ↗</a>
-      </div>
-    </aside>
+      <a class="btn" href="contact.html">S'abonner 📬</a>
+    </div>
   </div>
 </section>
 
 <script>
-document.getElementById('contactForm').addEventListener('submit', e => {
-  e.preventDefault();
-  document.getElementById('contactSuccess').classList.add('show');
+/* ---------- Filtres actu ---------- */
+document.querySelectorAll('.filter').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    const f = btn.dataset.filter;
+    document.querySelectorAll('#actuGrid .actu-card').forEach(card => {
+      card.classList.toggle('hidden', f !== 'all' && card.dataset.cat !== f);
+    });
+  });
 });
 </script>
 
